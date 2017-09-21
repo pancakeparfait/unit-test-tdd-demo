@@ -1,0 +1,37 @@
+﻿@using WebApplication1.Models.Person
+@model IEnumerable<PersonListViewModel>
+
+@{
+    ViewBag.Title = "People";
+}
+
+<h2>People</h2>
+
+<a href="@Url.Action("Add")" class="btn btn-lg btn-primary">Add Person</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Surname)</th>
+            <th>@Html.DisplayNameFor(x => x.GivenName)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var model = Model ?? Enumerable.Empty<PersonListViewModel>(); }
+        @if (!model.Any())
+        {
+            <tr>
+                <td colspan="3"><span class="text-info">No people to display.</span></td>
+            </tr>
+        }
+        @foreach (var person in model)
+        {
+            <tr>
+                <td>@person.Surname</td>
+                <td>@person.GivenName</td>
+                <td><a href="@Url.Action("Remove", new {id = person.Id})" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+        }
+    </tbody>
+</table>

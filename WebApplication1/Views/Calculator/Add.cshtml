@@ -1,0 +1,32 @@
+﻿@model WebApplication1.Models.Calculator.AddViewModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@Html.ActionLink("Back to Index", "Index")
+<hr/>
+
+@using (Html.BeginForm("Add"))
+{
+    <fieldset>
+        <div class="form-group">
+            @Html.LabelFor(x => x.FirstValue)
+            @Html.TextBoxFor(x => x.FirstValue, new { @class = "form-control" })
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-plus"></span>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.SecondValue)
+            @Html.TextBoxFor(x => x.SecondValue, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-lg">Calculate</button>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Sum)
+            <span class="form-control">@(Model?.Sum)</span>
+        </div>
+    </fieldset>
+}
